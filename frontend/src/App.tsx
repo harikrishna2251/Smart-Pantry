@@ -8,6 +8,7 @@ import Scan from './pages/Scan';
 import AddProduct from './pages/AddProduct';
 import Pantry from './pages/Pantry';
 import AiAssistant from './pages/AiAssistant';
+import ShoppingList from './pages/ShoppingList';
 
 // Placeholder components for the other routes
 const Alerts = () => <div className="p-6 h-full flex flex-col items-center justify-center"><h1 className="text-2xl text-slate-400">Alerts Coming Soon...</h1></div>;
@@ -66,6 +67,16 @@ function App() {
               <ProtectedRoute>
                 <Layout>
                   <AiAssistant />
+                </Layout>
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/shopping-list" 
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <ShoppingList />
                 </Layout>
               </ProtectedRoute>
             } 
