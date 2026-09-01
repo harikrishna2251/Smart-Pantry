@@ -10,12 +10,16 @@ const Pantry: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchItems = async () => {
-    if (!currentUser) return;
+    if (!currentUser) {
+      setLoading(false);
+      return;
+    }
     try {
       const data = await getUserPantry(currentUser.uid);
       setItems(data);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
+      alert("Error loading pantry: " + e.message);
     } finally {
       setLoading(false);
     }

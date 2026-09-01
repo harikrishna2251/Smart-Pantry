@@ -32,16 +32,16 @@ export const getUserPantry = async (userId: string) => {
   try {
     const q = query(
       collection(db, "pantry"), 
-      where("userId", "==", userId),
-      where("quantityRemaining", ">", 0),
-      // We will sort them by expiry date on the client side since Firestore 
-      // requires an index for multiple field queries
+      where("userId", "==", userId)
     );
     const querySnapshot = await getDocs(q);
-    const items: PantryItem[] = [];
+    let items: PantryItem[] = [];
     querySnapshot.forEach((doc) => {
       items.push({ id: doc.id, ...doc.data() } as PantryItem);
     });
+    
+    // Filter out consumed items on the client side to avoid Firestore Index requirements
+    items = items.filter(item => item.quantityRemaining > 0);
     
     // Sort by earliest expiry date first
     return items.sort((a, b) => new Date(a.expiryDate).getTime() - new Date(b.expiryDate).getTime());

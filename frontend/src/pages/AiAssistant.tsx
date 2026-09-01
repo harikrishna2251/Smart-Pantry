@@ -28,7 +28,8 @@ const AiAssistant: React.FC = () => {
       if (!apiKey) throw new Error("API Key missing");
 
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      // Fallback to gemini-pro as some older keys or specific regions don't support gemini-1.5-flash yet
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
       const ingredientsList = pantryItems.map(item => `${item.quantityRemaining}x ${item.name}`).join(', ');
       
