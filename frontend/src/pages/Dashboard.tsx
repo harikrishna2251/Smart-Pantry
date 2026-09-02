@@ -86,22 +86,22 @@ const Dashboard: React.FC = () => {
 
       {/* Inventory Summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+        <Link to="/pantry" className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center hover:bg-slate-50 transition-colors">
           <span className="text-slate-500 text-sm font-medium text-center">PRODUCTS</span>
           <span className="text-3xl font-bold text-slate-800 mt-1">{totalTypes}</span>
-        </div>
-        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+        </Link>
+        <Link to="/pantry" className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center hover:bg-slate-50 transition-colors">
           <span className="text-slate-500 text-sm font-medium text-center">TOTAL ITEMS</span>
           <span className="text-3xl font-bold text-slate-800 mt-1">{totalQuantity}</span>
-        </div>
-        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+        </Link>
+        <Link to="/pantry?filter=expiring" className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center hover:bg-orange-50 transition-colors">
           <span className="text-orange-500 text-sm font-medium text-center">EXPIRING (7 days)</span>
           <span className="text-3xl font-bold text-orange-600 mt-1">{expiringSoonCount + criticalCount}</span>
-        </div>
-        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+        </Link>
+        <Link to="/pantry?filter=expired" className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center hover:bg-red-50 transition-colors">
           <span className="text-red-500 text-sm font-medium text-center">EXPIRED</span>
           <span className="text-3xl font-bold text-red-600 mt-1">{expiredCount}</span>
-        </div>
+        </Link>
       </div>
 
       {/* Quick Actions */}
