@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "smart-pantry-monitor",
     "public": "dist",
     "ignore": [
       "firebase.json",
