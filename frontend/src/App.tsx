@@ -5,7 +5,6 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Scan from './pages/Scan';
-import AddProduct from './pages/AddProduct';
 import Pantry from './pages/Pantry';
 import AiAssistant from './pages/AiAssistant';
 import ShoppingList from './pages/ShoppingList';
@@ -37,16 +36,6 @@ function App() {
               <ProtectedRoute>
                 <Layout>
                   <Scan />
-                </Layout>
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/add-product" 
-            element={
-              <ProtectedRoute>
-                <Layout>
-                  <AddProduct />
                 </Layout>
               </ProtectedRoute>
             } 

@@ -110,9 +110,9 @@ const Dashboard: React.FC = () => {
           <ScanLine size={32} className="mb-2" />
           <span className="font-medium text-sm text-center">Scan Product</span>
         </Link>
-        <Link to="/add-product" className="flex flex-col items-center justify-center p-4 bg-white text-blue-600 border border-blue-100 rounded-2xl shadow-sm hover:bg-blue-50 transition-colors">
+        <Link to="/scan" className="flex flex-col items-center justify-center p-4 bg-white text-blue-600 border border-blue-100 rounded-2xl shadow-sm hover:bg-blue-50 transition-colors">
           <Plus size={32} className="mb-2" />
-          <span className="font-medium text-sm text-center">Add Product</span>
+          <span className="font-medium text-sm text-center">Add Manually</span>
         </Link>
         <Link to="/shopping-list" className="flex flex-col items-center justify-center p-4 bg-white text-blue-600 border border-blue-100 rounded-2xl shadow-sm hover:bg-blue-50 transition-colors">
           <ShoppingCart size={32} className="mb-2" />
