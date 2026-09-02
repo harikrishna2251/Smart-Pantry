@@ -122,36 +122,41 @@ const Dashboard: React.FC = () => {
 
       <hr className="border-slate-200" />
 
-      {/* Use First Section */}
-      <div>
-        <div className="flex items-center space-x-2 mb-4">
-          <AlertTriangle className={`${useFirstItems.length > 0 ? 'text-orange-500' : 'text-green-500'}`} size={24} />
-          <h3 className="text-xl font-bold text-slate-800">USE FIRST (FEFO Algorithm)</h3>
-        </div>
+      {/* Critical Alerts Section */}
+      <div className="space-y-4">
+        <h3 className="text-xl font-bold text-slate-800">Critical Alerts</h3>
         
-        {useFirstItems.length === 0 ? (
+        {expiredCount === 0 && expiringSoonCount === 0 && criticalCount === 0 ? (
           <div className="bg-green-50 text-green-700 p-6 rounded-2xl text-center border border-green-100 font-medium">
-            Great job! You have no items expiring in the next 7 days.
+            ✅ All clear! You have no items expiring soon.
           </div>
         ) : (
           <div className="space-y-3">
             {useFirstItems.map(item => (
-              <div key={item.id} className="flex items-center justify-between bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                <div className="flex items-center space-x-4">
-                  {item.image && (
-                    <img src={item.image} alt={item.name} className="w-12 h-12 rounded-lg object-cover bg-slate-100" />
-                  )}
+              <div 
+                key={item.id} 
+                className={`flex items-center justify-between p-4 rounded-xl border-l-4 shadow-sm bg-white ${
+                  item.daysLeft < 0 ? 'border-red-500' : 
+                  item.daysLeft <= 3 ? 'border-orange-500' : 'border-yellow-400'
+                }`}
+              >
+                <div className="flex items-center space-x-3">
+                  <AlertTriangle className={
+                    item.daysLeft < 0 ? 'text-red-500' : 
+                    item.daysLeft <= 3 ? 'text-orange-500' : 'text-yellow-500'
+                  } size={20} />
                   <div>
-                    <h4 className="font-bold text-slate-800 text-lg leading-tight">{item.name}</h4>
-                    <p className="text-slate-500 text-sm mt-1">{item.quantityRemaining} remaining</p>
+                    <h4 className="font-bold text-slate-800">{item.name || 'Unknown Item'}</h4>
+                    <p className="text-sm text-slate-500">
+                      {item.daysLeft < 0 
+                        ? `Expired ${Math.abs(item.daysLeft)} days ago` 
+                        : `Expiring in ${item.daysLeft} days`}
+                    </p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-slate-500">EXP: {item.expiryDate}</p>
-                  <p className={`font-bold ${item.daysLeft < 0 ? 'text-red-600' : item.daysLeft <= 3 ? 'text-orange-600' : 'text-yellow-600'}`}>
-                    {item.daysLeft < 0 ? `EXPIRED ${Math.abs(item.daysLeft)} DAYS AGO` : `${item.daysLeft} DAYS LEFT`}
-                  </p>
-                </div>
+                <Link to="/pantry" className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-200 transition-colors">
+                  View in Pantry
+                </Link>
               </div>
             ))}
           </div>
