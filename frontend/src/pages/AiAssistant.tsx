@@ -29,8 +29,8 @@ const AiAssistant: React.FC = () => {
 
       const genAI = new GoogleGenerativeAI(apiKey);
       
-      // Use the gemini-2.5-flash model which is supported by the user's advanced tier key
-      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+      // Update to gemini-3.6-flash as requested by the API error message
+      const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
       const ingredientsList = pantryItems.map(item => `${item.quantityRemaining}x ${item.name}`).join(', ');
       
